@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "soot_jars/soot-infoflow-android.jar",
+        "soot_jars/soot-infoflow.jar",
+        "soot_jars/soot-trunk.jar"
+    ]
+}
