@@ -68,7 +68,7 @@ public class Appgraph {
 		SootMethod entryPoint = app.getEntryPointCreator().createDummyMain();
 		Options.v().set_main_class(entryPoint.getSignature());
 		Scene.v().setEntryPoints(Collections.singletonList(entryPoint));
-		System.out.println(entryPoint.getActiveBody());
+		// System.out.println(entryPoint.getActiveBody());
 		try {
 			PackManager.v().runPacks();
 		}
