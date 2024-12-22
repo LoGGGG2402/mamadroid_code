@@ -1,17 +1,23 @@
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.PrintStream;
+import java.util.regex.Pattern;
 import org.xmlpull.v1.XmlPullParserException;
 import java.lang.System;
 import soot.PackManager;
 import soot.Scene;
 import soot.SootMethod;
-import soot.jimple.infoflow.InfoflowConfiguration;
+import soot.Unit;
 import soot.jimple.infoflow.android.SetupApplication;
+import soot.jimple.infoflow.solver.cfg.InfoflowCFG;
+import soot.jimple.infoflow.source.data.SourceSinkDefinition;
+import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.options.Options;
 
 public class Appgraph {
@@ -24,14 +30,13 @@ public class Appgraph {
 		soot.G.reset();
 		SetupApplication app = new SetupApplication(androidPlatform, appToRun);
 		app.getConfig().setEnableStaticFieldTracking(false); //no static field tracking --nostatic
-		app.getConfig();
-		InfoflowConfiguration.setAccessPathLength(1); // specify access path length
+		app.getConfig().setAccessPathLength(1); // specify access path length
 		app.getConfig().setFlowSensitiveAliasing(false); // alias flowin
 		try {
 			app.calculateSourcesSinksEntrypoints("SourcesAndSinks.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (XmlPullParserException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -48,7 +53,13 @@ public class Appgraph {
 		Options.v().set_include(toInclude);
 		Options.v().set_exclude(toExclude);
 		Options.v().set_output_format(Options.output_format_xml);
-		Options.v().set_soot_classpath("soot-trunk.jar:soot-infoflow.jar:soot-infoflow-android.jar:axml-2.0.jar:slf4j-simple-1.7.5.jar:slf4j-api-1.7.5.jar");
+		Options.v().set_soot_classpath(System.getProperty("java.class.path") + 
+		    ":soot-trunk.jar" +
+		    ":soot-infoflow.jar" + 
+		    ":soot-infoflow-android.jar" +
+		    ":axml-2.0.jar" +
+		    ":slf4j-simple-1.7.5.jar" +
+		    ":slf4j-api-1.7.5.jar");
 		Options.v().setPhaseOption("cg", "safe-newinstance:true");
 		Options.v().setPhaseOption("cg.spark", "on");
 		Options.v().setPhaseOption("wjap.cgg", "show-lib-meths:true");

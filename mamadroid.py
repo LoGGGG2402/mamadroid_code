@@ -46,10 +46,40 @@ def _repeated_function(app, _app_dir):
 		print(f"MaMaDroid Info: {err}")
 
 
+def _build_classpath():
+    script_dir = os.getcwd()
+    soot_dir = os.path.join(script_dir, "soot")
+    
+    required_jars = [
+        "soot-trunk.jar",
+        "soot-infoflow.jar",
+        "soot-infoflow-android.jar",
+        "axml-2.0.jar",
+        "slf4j-simple-1.7.5.jar",
+        "slf4j-api-1.7.5.jar"
+    ]
+    
+    classpath = script_dir
+    for jar in required_jars:
+        jar_path = os.path.join(soot_dir, jar)
+        if not os.path.isfile(jar_path):
+            raise Exception(f"Error: {jar} not found in {soot_dir}")
+        classpath = f"{classpath}:{jar_path}"
+    
+    return classpath
+
+
 def main():
 	_base_dir = os.getcwd()
 	
 	apps = parseargs()
+	
+	# Build the classpath
+	try:
+		classpath = _build_classpath()
+	except Exception as e:
+		print(f"Error building classpath: {e}")
+		return
 
 	if os.path.isdir(apps.file):
 		_apk_dir = apps.file.split("/")[-1]
@@ -60,7 +90,7 @@ def main():
 		_make_dirs(_app_dir)
 
 		for app in glob.glob(os.path.join(apps.file, "*.apk")):
-			cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC Appgraph {app} {apps.dir}"
+			cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp {classpath} Appgraph {app} {apps.dir}"
 			ran = Popen(shlex.split(cmd))
 			while True:
 				check = ran.poll()
@@ -73,7 +103,7 @@ def main():
 
 	else:
 		_make_dirs(_base_dir)
-		cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC Appgraph {apps.file} {apps.dir}"
+		cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp {classpath} Appgraph {apps.file} {apps.dir}"
 		ran = Popen(shlex.split(cmd))
 		while True:
 			check = ran.poll()
