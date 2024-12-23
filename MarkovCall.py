@@ -1,57 +1,84 @@
-from pathlib import Path
-import numpy as np
 import Markov as mk
 import os
 from time import time
 
-#Main script for the Markov modeling part. Inputs are explained in MaMaStat.py. Generates a csv file with the features per each row.
-def main(WHICHSAMPLES,wf,WHICHCLASS,dbs=None,appslist=None):
-    with Path(f'{WHICHCLASS}Occ.txt').open() as packseq:
-        PACKETS = [line.strip() for line in packseq]
 
-    allnodes = PACKETS + ['selfdefined', 'obfuscated']
-    
-    Header = ['filename'] + [
-        f'{i}To{j}' for i in allnodes for j in allnodes
-    ]
-    print(f'Header is long {len(Header)}')
+# Main script for the Markov modeling part. Inputs are explained in MaMaStat.py. Generates a csv file with the features per each row.
+def main(WHICHSAMPLES, wf, WHICHCLASS, dbs=None, appslist=None):
+    PACKETS = []
 
+    with open(WHICHCLASS + "Occ.txt") as packseq:
+        for line in packseq:
+            PACKETS.append(line.replace("\n", ""))
+    packseq.close()
+    allnodes = PACKETS
+    allnodes.append("selfdefined")
+    allnodes.append("obfuscated")
+
+    Header = []
+    Header.append("filename")
+    for i in range(0, len(allnodes)):
+        for j in range(0, len(allnodes)):
+            Header.append(allnodes[i] + "To" + allnodes[j])
+    print("Header is long ", len(Header))
+
+    Fintime = []
     dbcounter = 0
-    checks = list(range(0, 13000, 1000))
-    
-    for v, sample in enumerate(WHICHSAMPLES):
-        numApps = os.listdir(f'graphs/{sample}/')
-        DatabaseRes = [Header]
+    for v in range(0, len(WHICHSAMPLES)):
+        numApps = os.listdir("graphs/" + WHICHSAMPLES[v] + "/")
+
+        DatabaseRes = []
+        DatabaseRes.append(Header)
+
         leng = len(numApps)
-
-        for i in range(len(numApps)):
+        checks = [
+            0,
+            999,
+            1999,
+            2999,
+            3999,
+            4999,
+            5999,
+            6999,
+            7999,
+            8999,
+            9999,
+            10999,
+            11999,
+            12999,
+        ]
+        for i in range(0, len(numApps)):
             if i in checks:
-                print(f'starting {i+1} of {leng}')
-                
-            if wf == 'Y':
-                with open(f'{WHICHCLASS}/{sample}/{numApps[i]}') as callseq:
-                    specificapp = callseq.readlines()
+                print("starting ", i + 1, " of ", leng)
+            if wf == "Y":
+                with open(
+                    WHICHCLASS + "/" + WHICHSAMPLES[v] + "/" + str(numApps[i])
+                ) as callseq:
+                    specificapp = []
+                    for line in callseq:
+                        specificapp.append(line)
+                callseq.close()
             else:
-                specificapp = dbs[dbcounter][i]
+                specificapp = []
+                for line in dbs[dbcounter][i]:
+                    specificapp.append(line)
 
+            Startime = time()
             MarkMat = mk.main(specificapp, allnodes, wf)
-            
-            MarkRow = [
-                numApps[i] if wf == 'Y' else appslist[dbcounter][i]
-            ] + [
-                MarkMat[i][j] 
-                for i in range(len(MarkMat)) 
-                for j in range(len(MarkMat))
-            ]
-            
-            DatabaseRes.append(MarkRow)
-            
-        dbcounter += 1
-        
-        output_file = Path(f'Features/{WHICHCLASS}/{sample}.csv')
-        output_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(output_file, 'w') as f:
-            for line in DatabaseRes:
-                f.write(f"{line}\n")
 
+            MarkRow = []
+            if wf == "Y":
+                MarkRow.append(numApps[i])
+            else:
+                MarkRow.append(appslist[dbcounter][i])
+            for i in range(0, len(MarkMat)):
+                for j in range(0, len(MarkMat)):
+                    MarkRow.append(MarkMat[i][j])
+
+            DatabaseRes.append(MarkRow)
+            Fintime.append(time() - Startime)
+        dbcounter += 1
+        f = open("Features/" + WHICHCLASS + "/" + WHICHSAMPLES[v] + ".csv", "w")
+        for line in DatabaseRes:
+            f.write(str(line) + "\n")
+        f.close

@@ -1,53 +1,74 @@
 from time import time
-import csv
 import os
-import subprocess
-import numpy as np
 
+
+# Changes calls format. Previous format for each line is 'APICallX'===>['NextCall1','NextCall2'...] according to all the times APICallX is called. The resulting file will have each line as 'APICallX'\t'NextCall1'\t'NextCall2'\t...
 def main(WHICHSAMPLES, wf):
     alldb = []
     allapps = []
-    
-    for sample in WHICHSAMPLES:
+    for v in range(0, len(WHICHSAMPLES)):
         onedb = []
-        apps = os.listdir(f'graphs/{sample}/')
-        allapps.append(apps)
-        leng = len(apps)
-        
-        checks = list(range(0, 13000, 1000))
-        for i, app in enumerate(apps):
+        numApps = os.listdir("graphs/" + WHICHSAMPLES[v] + "/")
+
+        allapps.append(numApps)
+        leng = len(numApps)
+        Fintime = []
+        checks = [
+            0,
+            999,
+            1999,
+            2999,
+            3999,
+            4999,
+            5999,
+            6999,
+            7999,
+            8999,
+            9999,
+            10999,
+            11999,
+            12999,
+        ]
+        for i in range(0, len(numApps)):
             if i in checks:
-                print(f'starting {i+1} of {leng}')
-                
-            with open(f'graphs/{sample}/{app}') as callseq:
-                specificapp = callseq.readlines()
+                print("starting ", i + 1, " of ", leng)
+            with open("graphs/" + WHICHSAMPLES[v] + "/" + str(numApps[i])) as callseq:
+                specificapp = []
+                for line in callseq:
+                    specificapp.append(line)
+                callseq.close()
 
             call = []
             nextblock = []
             nextcall = []
-            start_time = time()
-            
+            Startime = time()
             for line in specificapp:
-                if line[0] == '<' and (line[1] == "'" or line[1].isalpha()):
-                    call.append(line.split('(')[0])
-                    nextblock.append(line.split('==>')[1])
+                if line[0] == "<" and (line[1] == "'" or line[1].isalpha()):
+                    call.append(str(line.split("(")[0]))
+                    nextblock.append(str(line.split("==>")[1]))
 
-            for block in nextblock:
-                supporto = block.translate({ord(c): None for c in '[]\'\\n'})
-                nextcall.append(supporto.split(','))
+            for j in range(0, len(nextblock)):
+                # Create translation table to remove []'\
+                trans_table = str.maketrans("", "", "[]'\\")
+                supporto = nextblock[j].translate(trans_table)
+                supporto = supporto.replace("\n", "")
 
-            wholefile = [
-                f"{call[j]}\t{''.join(nc.split('(')[0] + '\t' for nc in nextcall[j])}"
-                for j in range(len(call))
-            ]
+                nextcall.append([])
+                nextcall[j] = supporto.split(",")
+            Fintime.append(time() - Startime)
+            wholefile = []
+            for j in range(0, len(call)):
+                eachline = call[j] + "\t"
+                for k in range(0, len(nextcall[j])):
+                    tagliaparam = nextcall[j][k].split("(")[0]
+                    eachline = eachline + tagliaparam + "\t"
+                wholefile.append(eachline)
 
-            if wf == 'Y':
-                with open(f'Calls/{sample}/{app}', 'w') as f:
-                    f.write('\n'.join(wholefile) + '\n')
-                    
+            if wf == "Y":
+                f = open("Calls/" + WHICHSAMPLES[v] + "/" + str(numApps[i]), "w")
+                for line in wholefile:
+                    f.write(str(line) + "\n")
+                f.close
             onedb.append(wholefile)
-            
         alldb.append(onedb)
-        
     return alldb, allapps
-

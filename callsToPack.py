@@ -1,4 +1,5 @@
-from pathlib import Path
+from time import time
+import os
 from multiprocessing import Process, Queue
 import numpy as np
 import PackAbs as Pk
@@ -9,89 +10,110 @@ import PackAbs as Pk
 # This function is called when -wf flag is set to Y to operate the abstraction.
 def fileextract(fileitem, numApps, WHICHSAMPLES, v, PACKETS, pos):
     Packetsfile = []
-    
-    input_path = Path('Calls') / WHICHSAMPLES[v] / fileitem
-    output_path = Path('Packages') / WHICHSAMPLES[v] / fileitem
-    
-    with input_path.open(encoding='utf-8') as callseq:
+
+    with open("Calls/" + WHICHSAMPLES[v] + "/" + str(fileitem)) as callseq:
         specificapp = []
-        
+
         for line in callseq:
             Packetsline = []
-            
-            for j in line.split('\t')[:-1]:
+
+            for j in line.split("\t")[:-1]:
                 match = None
-                j = j.replace('<', '')
-                j = j.replace(' ', '')
-                
+                j = j.replace("<", "")
+                j = j.replace(" ", "")
+
                 match = Pk.PackAbs(j, pos)
-                
-                if match is None:
-                    splitted = j.split('.')
+
+                if match == None:
+
+                    splitted = j.split(".")
                     obfcount = 0
                     for k in range(0, len(splitted)):
                         if len(splitted[k]) < 3:
                             obfcount += 1
-                    if obfcount >= len(splitted)/2:
-                        match = 'obfuscated'
+                    if obfcount >= len(splitted) / 2:
+                        match = "obfuscated"
                     else:
-                        match = 'selfdefined'
+                        match = "selfdefined"
                 Packetsline.append(match)
             Packetsfile.append(Packetsline)
+        callseq.close()
 
-    with output_path.open('w', encoding='utf-8') as f:
-        for j in range(0, len(Packetsfile)):
-            eachline = '\t'.join(Packetsfile[j])
-            f.write(f"{eachline}\n")
+    f = open("Packages/" + WHICHSAMPLES[v] + "/" + str(fileitem), "w")
 
+    for j in range(0, len(Packetsfile)):
+
+        eachline = ""
+        for k in range(0, len(Packetsfile[j])):
+
+            eachline = eachline + Packetsfile[j][k] + "\t"
+
+        f.write(str(eachline) + "\n")
+    f.close
+
+
+# The main function. Inputs are explained in MaMaStat.py. In case -wf is set to N the abstraction is operated in the else and not multiprocessed. The abstraction process is differen from the families one to make it more time efficient.
 def main(WHICHSAMPLES, wf, CORES, callsdatabase=None):
     PACKETS = []
-    
-    with Path('Packages.txt').open(encoding='utf-8') as packseq:
-        PACKETS = [line.strip() for line in packseq]
-    
-    allpacks = [i.split('.')[1:] for i in PACKETS]
-    pos = [[] for _ in range(9)]
-    
+    Fintime = Queue()
+    with open("Packages.txt") as packseq:
+        for line in packseq:
+            PACKETS.append(line.replace("\n", ""))
+    packseq.close()
+    allpacks = []
+    for i in PACKETS:
+        allpacks.append(i.split(".")[1:])
+    pos = [[], [], [], [], [], [], [], [], []]
     for i in allpacks:
         k = len(i)
         for j in range(0, k):
+
             if i[j] not in pos[j]:
                 pos[j].append(i[j])
 
     packdb = []
-    if wf == 'Y':
+    if wf == "Y":
         for v in range(0, len(WHICHSAMPLES)):
-            numApps = os.listdir(os.path.join('Calls', WHICHSAMPLES[v]))
-            
+            numApps = os.listdir("Calls/" + WHICHSAMPLES[v] + "/")
+
             queue = Queue()
             for i in range(0, len(numApps)):
                 queue.put(numApps[i])
-            
+
+            appslist = []
+            leng = len(numApps)
             ProcessList = []
-            numfor = min(len(numApps), CORES)
-            
+            numfor = np.min([leng, CORES])
             for rr in range(0, numfor):
                 fileitem = queue.get()
-                process = Process(target=fileextract, args=(fileitem, numApps, WHICHSAMPLES, v, PACKETS, pos))
-                ProcessList.append(process)
-                process.daemon = True
-                process.start()
+                ProcessList.append(
+                    Process(
+                        target=fileextract,
+                        args=(fileitem, numApps, WHICHSAMPLES, v, PACKETS, pos),
+                    )
+                )
+                ProcessList[rr].daemon = True
+                ProcessList[rr].start()
 
-            while not queue.empty():
+            while queue.empty() == False:
+
                 for rr in range(0, CORES):
-                    if not ProcessList[rr].is_alive():
-                        ProcessList[rr].terminate()
-                        
-                        if not queue.empty():
-                            fileitem = queue.get()
-                            process = Process(target=fileextract, args=(fileitem, numApps, WHICHSAMPLES, v, PACKETS, pos))
-                            ProcessList[rr] = process
-                            process.daemon = True
-                            process.start()
 
-            for process in ProcessList:
-                process.join()
+                    if ProcessList[rr].is_alive() == False:
+                        ProcessList[rr].terminate()
+
+                        if queue.empty() == False:
+
+                            fileitem = queue.get()
+                            ProcessList[rr] = Process(
+                                target=fileextract,
+                                args=(fileitem, numApps, WHICHSAMPLES, v, PACKETS, pos),
+                            )
+                            ProcessList[rr].daemon = True
+                            ProcessList[rr].start()
+
+            for rr in range(0, len(ProcessList)):
+                ProcessList[rr].join()
 
     else:
         for db in callsdatabase:
@@ -100,20 +122,26 @@ def main(WHICHSAMPLES, wf, CORES, callsdatabase=None):
                 Packetsfile = []
                 for line in app:
                     Packetsline = []
-                    for j in line.split('\t')[:-1]:
+                    for j in line.split("\t")[:-1]:
                         match = None
-                        j = j.replace('<', '').replace(' ', '')
-                        
+                        j = j.replace("<", "")
+                        j = j.replace(" ", "")
+
                         match = Pk.PackAbs(j, pos)
-                        
-                        if match is None:
-                            splitted = j.split('.')
-                            obfcount = sum(1 for k in splitted if len(k) < 3)
-                            match = 'obfuscated' if obfcount >= len(splitted)/2 else 'selfdefined'
+
+                        if match == None:
+
+                            splitted = j.split(".")
+                            obfcount = 0
+                            for k in range(0, len(splitted)):
+                                if len(splitted[k]) < 3:
+                                    obfcount += 1
+                            if obfcount >= len(splitted) / 2:
+                                match = "obfuscated"
+                            else:
+                                match = "selfdefined"
                         Packetsline.append(match)
                     Packetsfile.append(Packetsline)
                 appdb.append(Packetsfile)
             packdb.append(appdb)
-            
     return packdb
-
