@@ -7,6 +7,7 @@ You can also edit the amount of memory allocated to the JVM heap space to fit yo
 '''
 import glob
 import os 
+import platform  # Add this import at the top
 from subprocess import Popen, PIPE
 import parseGraph
 import shlex
@@ -24,10 +25,10 @@ def parseargs():
 
 def _make_dirs(_base_dir):
 	try:
-		os.mkdir(os.path.join(_base_dir, "graphs"))
+		os.mkdir(os.path.join(_base_dir, "class"))
 		os.mkdir(os.path.join(_base_dir, "package"))
 		os.mkdir(os.path.join(_base_dir, "family"))
-		os.mkdir(os.path.join(_base_dir, "class"))
+		os.mkdir(os.path.join(_base_dir, "graphs"))
 	except OSError:
 		print("MaMaDroid Info: One or more of the default directory already exists. Skipping directory creation...")
 
@@ -50,6 +51,7 @@ def _build_classpath():
     script_dir = os.getcwd()
     soot_dir = os.path.join(script_dir, "soot")
     
+    # Include xmlpull jar
     required_jars = [
         "soot-trunk.jar",
         "soot-infoflow.jar",
@@ -59,15 +61,20 @@ def _build_classpath():
         "slf4j-api-1.7.5.jar"
     ]
     
-    classpath = script_dir
+    # Use appropriate path separator based on OS
+    separator = ";" if platform.system() == "Windows" else ":"
+    
+    # Build classpath
+    classpath_parts = [script_dir]
     for jar in required_jars:
         jar_path = os.path.join(soot_dir, jar)
         if not os.path.isfile(jar_path):
             raise Exception(f"Error: {jar} not found in {soot_dir}")
-        classpath = f"{classpath}:{jar_path}"
+        classpath_parts.append(jar_path)
     
+    classpath = separator.join(classpath_parts)
     return classpath
-
+	
 
 def main():
 	_base_dir = os.getcwd()
@@ -90,7 +97,7 @@ def main():
 		_make_dirs(_app_dir)
 
 		for app in glob.glob(os.path.join(apps.file, "*.apk")):
-			cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp {classpath} Appgraph {app} {apps.dir}"
+			cmd = f'java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp "{classpath}" Appgraph "{app}" "{apps.dir}"'
 			ran = Popen(shlex.split(cmd))
 			while True:
 				check = ran.poll()
@@ -103,7 +110,8 @@ def main():
 
 	else:
 		_make_dirs(_base_dir)
-		cmd = f"java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp {classpath} Appgraph {apps.file} {apps.dir}"
+		cmd = f'java -Xms4g -Xmx16g -XX:+UseConcMarkSweepGC -cp "{classpath}" Appgraph "{apps.file}" "{apps.dir}"'
+		print(cmd)
 		ran = Popen(shlex.split(cmd))
 		while True:
 			check = ran.poll()

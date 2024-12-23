@@ -34,7 +34,7 @@ def _preprocess_graph(app, _dir):
                     fp.write(str(callee[a]).strip('"<') + "\t")
                 else:
                     fp.write(str(callee[a]).strip('"<') + "\n")
-    selfDefined(appl, _dir)
+    selfDefined(app, _dir)
 
 
 def selfDefined(f, _dir):

@@ -1,0 +1,95 @@
+CLINIT edge: $r1 = new de.ecspride.Button2 in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <android.app.Activity: void <clinit>()>
+CLINIT edge: $r3 = new android.view.View in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <android.view.View: void <clinit>()>
+CLINIT edge: $r2 = new android.os.Bundle in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <android.os.Bundle: void <clinit>()>
+CLINIT edge: <android.app.Activity: int[] FOCUSED_STATE_SET> = $r0 in <android.app.Activity: void <clinit>()> ==> <android.app.Activity: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property ALPHA> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property Z> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property Y> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property X> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] WINDOW_FOCUSED_STATE_SET> = $r31 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property TRANSLATION_Z> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property TRANSLATION_Y> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property TRANSLATION_X> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] SELECTED_WINDOW_FOCUSED_STATE_SET> = $r30 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] SELECTED_STATE_SET> = $r29 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property SCALE_Y> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property SCALE_X> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property ROTATION_Y> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property ROTATION_X> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: android.util.Property ROTATION> = null in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_WINDOW_FOCUSED_STATE_SET> = $r28 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_STATE_SET> = $r27 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r26 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_SELECTED_STATE_SET> = $r25 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_FOCUSED_WINDOW_FOCUSED_STATE_SET> = $r24 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_FOCUSED_STATE_SET> = $r23 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r22 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_FOCUSED_SELECTED_STATE_SET> = $r21 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_WINDOW_FOCUSED_STATE_SET> = $r20 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_STATE_SET> = $r19 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r18 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_SELECTED_STATE_SET> = $r17 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_FOCUSED_WINDOW_FOCUSED_STATE_SET> = $r16 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_FOCUSED_STATE_SET> = $r15 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r14 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] PRESSED_ENABLED_FOCUSED_SELECTED_STATE_SET> = $r13 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] FOCUSED_WINDOW_FOCUSED_STATE_SET> = $r12 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] FOCUSED_STATE_SET> = $r11 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r10 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] FOCUSED_SELECTED_STATE_SET> = $r9 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_WINDOW_FOCUSED_STATE_SET> = $r8 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_STATE_SET> = $r7 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r6 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_SELECTED_STATE_SET> = $r5 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_FOCUSED_WINDOW_FOCUSED_STATE_SET> = $r4 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_FOCUSED_STATE_SET> = $r3 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET> = $r2 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] ENABLED_FOCUSED_SELECTED_STATE_SET> = $r1 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.view.View: int[] EMPTY_STATE_SET> = $r0 in <android.view.View: void <clinit>()> ==> <android.view.View: void <clinit>()>
+CLINIT edge: <android.os.Bundle: android.os.Parcelable$Creator CREATOR> = null in <android.os.Bundle: void <clinit>()> ==> <android.os.Bundle: void <clinit>()>
+CLINIT edge: <android.os.Bundle: android.os.Bundle EMPTY> = null in <android.os.Bundle: void <clinit>()> ==> <android.os.Bundle: void <clinit>()>
+SPECIAL edge: specialinvoke $r3.<android.view.View: void <init>(android.content.Context)>($r1) in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <android.view.View: void <init>(android.content.Context)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.view.View: void <init>(android.content.Context)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.RuntimeException: void <init>(java.lang.String)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Exception: void <init>()>() in <java.lang.RuntimeException: void <init>(java.lang.String)> ==> <java.lang.Exception: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.Exception: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Throwable: void <init>()>() in <java.lang.Exception: void <init>()> ==> <java.lang.Throwable: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.Throwable: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Object: void <init>()>() in <java.lang.Throwable: void <init>()> ==> <java.lang.Object: void <init>()>
+FINALIZE edge: null in <java.lang.Object: void <init>()> ==> <java.lang.Object: void finalize()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.Object: void finalize()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.Object: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Object: void <init>()>() in <android.view.View: void <init>(android.content.Context)> ==> <java.lang.Object: void <init>()>
+SPECIAL edge: specialinvoke $r2.<android.os.Bundle: void <init>()>() in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <android.os.Bundle: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.os.Bundle: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<android.os.BaseBundle: void <init>()>() in <android.os.Bundle: void <init>()> ==> <android.os.BaseBundle: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.os.BaseBundle: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Object: void <init>()>() in <android.os.BaseBundle: void <init>()> ==> <java.lang.Object: void <init>()>
+SPECIAL edge: specialinvoke $r1.<de.ecspride.Button2: void <init>()>() in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <de.ecspride.Button2: void <init>()>
+VIRTUAL edge: virtualinvoke $r1.<de.ecspride.Button2: void onCreate(android.os.Bundle)>($r2) in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <de.ecspride.Button2: void onCreate(android.os.Bundle)>
+VIRTUAL edge: virtualinvoke $r1.<de.ecspride.Button2: void clickOnButton3(android.view.View)>($r3) in <dummyMainClass: void dummyMainMethod(java.lang.String[])> ==> <de.ecspride.Button2: void clickOnButton3(android.view.View)>
+STATIC edge: staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("TAG", $r4) in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <android.util.Log: int i(java.lang.String,java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.util.Log: int i(java.lang.String,java.lang.String)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Button 3: ") in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <java.lang.StringBuilder: void <init>(java.lang.String)>
+VIRTUAL edge: $r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4) in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>
+VIRTUAL edge: $r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>() in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <java.lang.StringBuilder: java.lang.String toString()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.StringBuilder: java.lang.String toString()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <java.lang.StringBuilder: void <init>(java.lang.String)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Object: void <init>()>() in <java.lang.StringBuilder: void <init>(java.lang.String)> ==> <java.lang.Object: void <init>()>
+VIRTUAL edge: $r2 = virtualinvoke $r0.<de.ecspride.Button2: java.lang.Object getSystemService(java.lang.String)>("phone") in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <android.app.Activity: java.lang.Object getSystemService(java.lang.String)>
+VIRTUAL edge: $r4 = virtualinvoke $r0.<de.ecspride.Button2: java.lang.String stringManipulation1(java.lang.String)>($r4) in <de.ecspride.Button2: void clickOnButton3(android.view.View)> ==> <de.ecspride.Button2: java.lang.String stringManipulation1(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.app.Activity: java.lang.Object getSystemService(java.lang.String)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<android.app.Activity: void onCreate(android.os.Bundle)>($r1) in <de.ecspride.Button2: void onCreate(android.os.Bundle)> ==> <android.app.Activity: void onCreate(android.os.Bundle)>
+VIRTUAL edge: virtualinvoke $r0.<de.ecspride.Button2: void setContentView(int)>(2130903040) in <de.ecspride.Button2: void onCreate(android.os.Bundle)> ==> <android.app.Activity: void setContentView(int)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.app.Activity: void setContentView(int)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.app.Activity: void onCreate(android.os.Bundle)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke $r0.<android.app.Activity: void <init>()>() in <de.ecspride.Button2: void <init>()> ==> <android.app.Activity: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.app.Activity: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<android.view.ContextThemeWrapper: void <init>()>() in <android.app.Activity: void <init>()> ==> <android.view.ContextThemeWrapper: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.view.ContextThemeWrapper: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<android.content.ContextWrapper: void <init>(android.content.Context)>(null) in <android.view.ContextThemeWrapper: void <init>()> ==> <android.content.ContextWrapper: void <init>(android.content.Context)>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.content.ContextWrapper: void <init>(android.content.Context)> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<android.content.Context: void <init>()>() in <android.content.ContextWrapper: void <init>(android.content.Context)> ==> <android.content.Context: void <init>()>
+SPECIAL edge: specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>("Stub!") in <android.content.Context: void <init>()> ==> <java.lang.RuntimeException: void <init>(java.lang.String)>
+SPECIAL edge: specialinvoke this.<java.lang.Object: void <init>()>() in <android.content.Context: void <init>()> ==> <java.lang.Object: void <init>()>
